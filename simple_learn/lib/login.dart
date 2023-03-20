@@ -4,7 +4,8 @@ import 'package:email_validator/email_validator.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 class LogInPage extends StatefulWidget {
-  const LogInPage({super.key});
+  final VoidCallback showRegisterPage;
+  const LogInPage({super.key, required this.showRegisterPage});
 
   @override
   State<LogInPage> createState() => _LogInPageState();
@@ -55,6 +56,11 @@ class _LogInPageState extends State<LogInPage> {
                 validateEmail(val);
               },
             ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(_errorMessage, style: const TextStyle(color: Colors.red),),
+            ),
+
             //password
             TextFormField(
                 controller: _passwordController,
@@ -80,6 +86,10 @@ class _LogInPageState extends State<LogInPage> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
+              child: Text(_errorPassword, style: const TextStyle(color: Colors.red),),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
               child: GestureDetector(
                 onTap: signIn,
                 child: Container(
@@ -98,29 +108,19 @@ class _LogInPageState extends State<LogInPage> {
             ),
 
 
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(_errorMessage, style: const TextStyle(color: Colors.red),),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(_errorPassword, style: const TextStyle(color: Colors.red),),
-            ),
+
+
             Row(
               children: [
-                Text(
+                const Text(
                   "Create new user",
                   style: TextStyle(
                     fontWeight: FontWeight.normal,
                   ),
                 ),
                 
-                ElevatedButton(
-                  onPressed: () { 
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const ))
-                  },
+                GestureDetector(
+                  onTap: widget.showRegisterPage,
                   child: Text(
                     'SignUp',
                     style: TextStyle(

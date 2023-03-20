@@ -9,14 +9,18 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+        appBar: AppBar(
+        title: Text('Your Home'),
+        ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('Signed In'),
+              Text('Signed in as: ${user?.email}'),
               MaterialButton(
                   onPressed: (){
                     FirebaseAuth.instance.signOut();
