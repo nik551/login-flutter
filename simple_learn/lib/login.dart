@@ -30,6 +30,7 @@ class _LogInPageState extends State<LogInPage> {
   void dispose(){
     _emailController.dispose();
     _passwordController.dispose();
+    print("dispose activated");
     super.dispose();
   }
   @override
